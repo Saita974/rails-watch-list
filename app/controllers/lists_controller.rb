@@ -9,13 +9,13 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @bookmarks = Bookmark.where(list: @list)
   end
 
   def create
     @list = List.new(list_params)
-    @list.restaurant = @list
     @list.save
-    redirect_to list_path(@restaurant)
+    redirect_to list_path(@list)
   end
 
   private
